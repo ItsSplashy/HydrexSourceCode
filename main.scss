@@ -1,0 +1,344 @@
+@import "functions";
+@import "generale";
+@import "dashboard";
+
+$main-color: #6139e6;
+$main-background: #131313;
+$white-opacity: rgba(255, 255, 255, 0.041);
+$white-opacity-second: rgba(255, 255, 255, 0.014);
+$black-opacity: rgba(0, 0, 0, 0.24);
+$black-opacity-second: rgba(0, 0, 0, 0.021);
+$hidden-color: rgb(102, 102, 102);
+$hidden-text-color: #adadad;
+$error-color: rgb(199, 77, 77);
+$success-color: rgb(64, 224, 176);
+
+::-moz-selection {
+  background: $main-color;
+}
+
+::selection {
+  background: $main-color;
+}
+
+* {
+  user-select: none;
+  font-family: "Karla", sans-serif;
+  transition: 0.25s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+input {
+  user-select: unset;
+}
+
+body {
+  background: $main-background;
+}
+
+::-webkit-scrollbar {
+  background-color: rgba(255, 255, 255, 0.021);
+  border-radius: 20px;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb:window-inactive,
+::-webkit-scrollbar-thumb {
+  background-color: rgb(151, 151, 151);
+  border-radius: 20px;
+}
+
+#app,
+#loader-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+
+#error-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .middle-content {
+    text-align: center;
+    img {
+      width: 100px;
+    }
+    .title {
+      font-size: 30px;
+      color: $error-color;
+    }
+    .description {
+      margin: 10px 0;
+      font-size: 20px;
+      color: #adadad;
+    }
+  }
+}
+#loader-screen {
+  -webkit-user-select: none;
+  user-select: none;
+  background-size: cover;
+  background-color: $main-background;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  .content-center {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .content-text {
+      .logo {
+        width: 100%;
+        text-align: center;
+        font-size: 80px;
+        font-family: Oxanium, sans-serif;
+        color: #fff;
+        margin: 5px auto 0px auto;
+        span {
+          color: $main-color;
+        }
+      }
+      .description {
+        color: $hidden-text-color;
+        font-size: 19px;
+        text-align: center;
+      }
+    }
+  }
+  .fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.192);
+    div {
+      position: absolute;
+      height: 100%;
+      animation: loader-animation 2s infinite linear;
+      @include gradientBg();
+    }
+  }
+}
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .panel {
+    width: 400px;
+    height: auto;
+    padding: 20px;
+    text-align: center;
+    .logo {
+      font-size: 50px;
+      font-family: Oxanium, sans-serif;
+      color: #fff;
+    }
+    .description {
+      color: $hidden-color;
+    }
+    .alert-generale {
+      width: 95%;
+      padding: 10px;
+      background: rgba($error-color, 0.3);
+      color: $error-color;
+      text-align: center;
+      border-radius: 20px;
+      margin: 10px auto 0 auto;
+      &.success {
+        color: $success-color;
+        background: rgba($success-color, 0.3);
+      }
+    }
+    .wrap-input {
+      width: 95%;
+      padding: 15px 10px;
+      background-color: $white-opacity;
+      border-radius: 20px;
+      margin: 10px auto 0 auto;
+      text-align: left;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.048);
+      }
+      .label {
+        color: $hidden-text-color;
+        margin: 0 5px;
+        font-size: 15px;
+        span {
+          color: $error-color;
+          font-size: 13px;
+          margin: 0 5px;
+        }
+      }
+      .t-click {
+        color: $hidden-text-color;
+        cursor: pointer;
+        font-size: 13px;
+        margin: 5px;
+      }
+      input {
+        outline: none;
+        background-color: $white-opacity;
+        width: 93%;
+        padding: 10px;
+        margin: 5px auto;
+        border-radius: 10px;
+        color: $hidden-text-color;
+        border: 1px solid transparent;
+        &:focus {
+          border: 1px solid black;
+        }
+        &:hover {
+          background: $white-opacity-second;
+        }
+      }
+    }
+    .line {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.123);
+      margin: 5px 0;
+    }
+    .line-login {
+      margin: 10px;
+      display: flex;
+      justify-content: space-between;
+
+      &.signup {
+        display: block;
+        text-align: center;
+
+        .button {
+          width: 200px;
+          margin: 0 auto;
+        }
+      }
+
+      .loader {
+        @include loaderCircle(10px, 10px, $main-color);
+      }
+
+      span {
+        color: $hidden-text-color;
+        margin: 10px 5px;
+        font-size: 15px;
+        cursor: pointer;
+        &:hover {
+          color: rgba($hidden-text-color, 0.5);
+        }
+      }
+
+      .button {
+        width: 100px;
+        padding: 10px;
+        border-radius: 50px;
+        border: 1px solid $main-color;
+        cursor: pointer;
+        color: $main-color;
+        text-align: center;
+        &.active {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: not-allowed;
+          &:hover {
+            border: 1px solid $main-color;
+            background: unset;
+            color: $main-color;
+          }
+        }
+        &:hover {
+          // background-color: $main-color;
+          border: 1px solid transparent;
+          @include gradientBg();
+          color: $main-background;
+        }
+      }
+    }
+    span {
+      display: inline-block;
+      margin: 10px 0;
+      color: $hidden-text-color;
+    }
+    .button-mirror {
+      width: 85%;
+      padding: 10px;
+      border-radius: 50px;
+      border: 1px solid $main-color;
+      cursor: pointer;
+      color: $main-color;
+      margin: 0 auto;
+      font-size: 17px;
+      text-align: center;
+      &:hover {
+        // background-color: $main-color;
+        border: 1px solid transparent;
+        @include gradientBg();
+        color: $main-background;
+      }
+    }
+  }
+}
+
+#home-page {
+  img {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+  }
+  #side-bar-home {
+    width: 100%;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.192);
+    display: flex;
+    justify-content: space-between;
+    .buttons {
+      display: flex;
+      .button {
+        margin: 10px;
+        text-align: center;
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.192);
+      }
+    }
+  }
+}
+
+@keyframes loader-animation {
+  0% {
+    left: 0;
+    width: 0;
+  }
+  50% {
+    left: 50%;
+    width: 50%;
+  }
+  100% {
+    width: 0;
+    left: 100%;
+  }
+}

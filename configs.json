@@ -1,0 +1,42 @@
+{
+  "fee": 0.01,
+  "perOneDollar": 1000,
+  "version_text": "Beta Version 1275 (12c29a3)",
+  "discord_invite": "https://discord.gg/kCjtXV7nfT",
+  "cash_allowed": {
+    "paypal": {
+      "allowed": true,
+      "perOneDollar": 1000,
+      "cards": [5, 10, 20, 30, 50, 80, 120, 200]
+    },
+    "bitcoin": {
+      "allowed": true
+    },
+    "robux": {
+      "allowed": true,
+      "perOneRobux": 1
+    }
+  },
+  "gift_cards": {
+    "amazon": {
+      "image": "/amazon.svg",
+      "color": "#000",
+      "allowed": true
+    },
+    "spotify": {
+      "image": "/spotify.png",
+      "color": "linear-gradient(81.14deg,#7ab55c 25.96%,#38ffc3 147.65%)",
+      "allowed": true
+    },
+    "netflix": {
+      "image": "/netflix.svg",
+      "color": "#dfdfdf",
+      "allowed": true
+    },
+    "googleplay": {
+      "image": "/googleplay.svg",
+      "color": "#dfdfdf",
+      "allowed": true
+    }
+  }
+}
